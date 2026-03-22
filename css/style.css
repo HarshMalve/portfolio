@@ -336,11 +336,23 @@ button {
   overflow: hidden;
 }
 
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.6;
+  pointer-events: auto; /* Allow mouse interaction for the 3D scene */
+}
+
 .hero-bg-shapes {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  z-index: 0;
 }
 
 .shape {
@@ -603,16 +615,26 @@ button {
   transform: scaleX(1);
 }
 
+/* 3D Service Icon */
 .service-icon {
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-md);
-  background: var(--color-primary-glow);
+  background: var(--color-surface-alt);
   color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.service-3d-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
 }
 
 .service-card h3 {
@@ -898,6 +920,24 @@ button {
 /* ============================================================
    CONTACT
    ============================================================ */
+.contact, .projects, .testimonials {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-canvas, .section-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.relative-container {
+  position: relative;
+  z-index: 1;
+}
 .contact-wrapper {
   max-width: 680px;
   margin: 0 auto;
