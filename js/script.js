@@ -144,9 +144,9 @@
 
 
   // ─── Testimonial Slider ───
-  const track    = $('#testimonials-track');
-  const prevBtn  = $('#slider-prev');
-  const nextBtn  = $('#slider-next');
+  const track = $('#testimonials-track');
+  const prevBtn = $('#slider-prev');
+  const nextBtn = $('#slider-next');
   const dotsWrap = $('#slider-dots');
 
   if (track && prevBtn && nextBtn && dotsWrap) {
@@ -285,6 +285,14 @@
 
     fetch(scriptURL, { method: 'POST', body: formData })
       .then(response => {
+        // --- GOOGLE ANALYTICS EVENT TRACKING ---
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            'event_category': 'Contact',
+            'event_label': 'Portfolio Form Submitted'
+          });
+        }
+        // ---------------------------------------        
         // Success state
         submitBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -328,19 +336,19 @@
 
     // Create Geometry (Abstract complex wireframe)
     const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-    
+
     // Create Material - using the primary CSS variable color if possible, fallback to electric blue
     const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#2563eb';
-    
-    const material = new THREE.MeshBasicMaterial({ 
-      color: primaryColor, 
+
+    const material = new THREE.MeshBasicMaterial({
+      color: primaryColor,
       wireframe: true,
       transparent: true,
       opacity: 0.15
     });
-    
+
     const torusKnot = new THREE.Mesh(geometry, material);
-    
+
     // Add an inner sphere
     const sphereGeo = new THREE.IcosahedronGeometry(8, 2);
     const sphereMat = new THREE.MeshBasicMaterial({
@@ -350,7 +358,7 @@
       opacity: 0.1
     });
     const sphere = new THREE.Mesh(sphereGeo, sphereMat);
-    
+
     // Group them
     const group = new THREE.Group();
     group.add(torusKnot);
@@ -390,13 +398,13 @@
       // Slow idle rotation
       group.rotation.y = elapsedTime * 0.1;
       group.rotation.x = elapsedTime * 0.05;
-      
+
       torusKnot.rotation.z = elapsedTime * -0.05;
 
       // Mouse interactivity (smooth interpolation)
       targetX = mouseX * 2;
       targetY = mouseY * 2;
-      
+
       group.rotation.y += 0.05 * (targetX - group.rotation.y);
       group.rotation.x += 0.05 * (targetY - group.rotation.x);
 
@@ -463,7 +471,7 @@
 
     const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#2563eb';
     const material = new THREE.MeshBasicMaterial({ color: primaryColor, wireframe: true, transparent: true, opacity: 0.8 });
-    
+
     const group = new THREE.Group();
     geometryFn(group, material);
     scene.add(group);
@@ -523,7 +531,7 @@
     renderer.setPixelRatio(window.devicePixelRatio);
 
     const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#2563eb';
-    
+
     // Particles
     const particleCount = window.innerWidth > 768 ? 150 : 50;
     const geometry = new THREE.BufferGeometry();
@@ -534,7 +542,7 @@
       positions[i] = (Math.random() - 0.5) * 1000;
       positions[i + 1] = (Math.random() - 0.5) * 600;
       positions[i + 2] = (Math.random() - 0.5) * 400;
-      
+
       velocities.push({
         x: (Math.random() - 0.5) * 0.5,
         y: (Math.random() - 0.5) * 0.5,
@@ -560,14 +568,14 @@
       transparent: true,
       opacity: 0.15
     });
-    
+
     const linesMesh = new THREE.LineSegments(new THREE.BufferGeometry(), lineMaterial);
     scene.add(linesMesh);
 
     let mouseX = 0, mouseY = 0;
     let contactRect = document.getElementById('contact').getBoundingClientRect();
 
-    window.addEventListener('scroll', () => { contactRect = document.getElementById('contact').getBoundingClientRect(); }, {passive: true});
+    window.addEventListener('scroll', () => { contactRect = document.getElementById('contact').getBoundingClientRect(); }, { passive: true });
     window.addEventListener('resize', () => {
       contactRect = document.getElementById('contact').getBoundingClientRect();
       camera.aspect = window.innerWidth / contactRect.height;
@@ -608,7 +616,7 @@
           const dx = positions[i3] - positions[j3];
           const dy = positions[i3 + 1] - positions[j3 + 1];
           const dz = positions[i3 + 2] - positions[j3 + 2];
-          const distSq = dx*dx + dy*dy + dz*dz;
+          const distSq = dx * dx + dy * dy + dz * dz;
 
           if (distSq < 15000) {
             linePositions.push(
@@ -637,7 +645,7 @@
     });
     observer.observe(document.documentElement, { attributes: true });
   }
-  
+
   initContactNodes();
 
   // ─── Three.js Projects Background (Floating Geometries) ───
@@ -668,11 +676,11 @@
     for (let i = 0; i < particleCount; i++) {
       const geo = geometries[Math.floor(Math.random() * geometries.length)];
       const mesh = new THREE.Mesh(geo, material);
-      
+
       mesh.position.x = (Math.random() - 0.5) * 400;
       mesh.position.y = (Math.random() - 0.5) * 300;
       mesh.position.z = (Math.random() - 0.5) * 100 - 50;
-      
+
       mesh.rotation.x = Math.random() * Math.PI;
       mesh.rotation.y = Math.random() * Math.PI;
 
@@ -681,7 +689,7 @@
         speedR: (Math.random() - 0.5) * 0.02,
         speedY: Math.random() * 0.2 + 0.1
       };
-      
+
       particles.add(mesh);
     }
     scene.add(particles);
@@ -747,7 +755,7 @@
     renderer.setPixelRatio(window.devicePixelRatio);
 
     const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#2563eb';
-    
+
     // Create a large flat plane with many segments
     const geometry = new THREE.PlaneGeometry(300, 100, 30, 10);
     geometry.rotateX(-Math.PI / 2); // Lay flat
