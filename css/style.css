@@ -721,6 +721,9 @@ button {
   padding: var(--space-2xl);
   opacity: 0;
   transition: opacity var(--transition-base);
+  z-index: 10;
+  /* Safari 3D fix */
+  transform: translateZ(20px);
 }
 
 .project-card:hover .project-overlay {
@@ -728,20 +731,25 @@ button {
 }
 
 .project-meta {
-  margin-bottom: var(--space-sm);
+  position: absolute;
+  top: var(--space-xl);
+  left: var(--space-xl);
+  margin-bottom: 0;
+  z-index: 20;
 }
 
 .project-category {
   display: inline-block;
-  padding: 4px 14px;
+  padding: 6px 16px;
   border-radius: var(--radius-full);
-  font-size: var(--font-xs);
-  font-weight: 600;
-  color: var(--color-primary);
-  background: var(--color-primary-glow);
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--color-primary);
+  border: none;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 12px var(--color-primary-glow);
 }
 
 .project-title {
@@ -1271,14 +1279,21 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .project-card--large {
+  .project-card, .project-card--large {
     grid-column: auto;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: auto;
+    min-height: 340px;
   }
 
   .project-overlay {
     opacity: 1;
-    background: linear-gradient(0deg, var(--color-overlay) 40%, transparent 100%);
+    background: linear-gradient(0deg, rgba(10, 10, 10, 0.95) 10%, rgba(10, 10, 10, 0.2) 100%);
+    padding: var(--space-lg);
+  }
+
+  .project-meta {
+    top: var(--space-lg);
+    left: var(--space-lg);
   }
 
 
