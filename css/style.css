@@ -1208,7 +1208,8 @@ button {
 
   .hero-stats {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: var(--space-lg);
   }
 
