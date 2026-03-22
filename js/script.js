@@ -143,6 +143,60 @@
   }
 
 
+  // ─── Testimonial Slider ───
+  const track    = $('#testimonials-track');
+  const prevBtn  = $('#slider-prev');
+  const nextBtn  = $('#slider-next');
+  const dotsWrap = $('#slider-dots');
+
+  if (track && prevBtn && nextBtn && dotsWrap) {
+    const cards = track.querySelectorAll('.testimonial-card');
+    let current = 0;
+    let autoTimer;
+
+    // Create dots
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function goTo(index) {
+      current = (index + cards.length) % cards.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+    // Auto-play
+    function startAuto() { autoTimer = setInterval(() => goTo(current + 1), 6000); }
+    function resetAuto() { clearInterval(autoTimer); startAuto(); }
+    startAuto();
+
+    // Pause on hover
+    const slider = track.closest('.testimonial-slider');
+    slider.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    slider.addEventListener('mouseleave', startAuto);
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? goTo(current + 1) : goTo(current - 1);
+        resetAuto();
+      }
+    }, { passive: true });
+  }
+
+
 
   // ─── Contact Form: Custom Validation ───
   const errorIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';

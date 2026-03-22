@@ -41,7 +41,7 @@
     <meta name="twitter:image:alt" content="Harshavardhan Malve — Premium Freelance Web Developer">
 
     <!-- ─── Favicon ─── -->
-    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="images/letter-h-icon.png" type="image/png">
 
     <!-- ─── Fonts ─── -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -445,48 +445,96 @@
                     <h2 class="section-title">What People Say</h2>
                     <p class="section-subtitle">Feedback from professionals I've had the privilege of working with.</p>
                 </div>
-                <div class="testimonials-track anim-fade-up">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <blockquote class="testimonial-quote">
-                            "Harshavardhan's expertise in JavaScript frameworks and backend development is exceptional.
-                            He delivered a high-quality solution that exceeded our expectations."
-                        </blockquote>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">SB</div>
-                            <div class="author-info">
-                                <h4>Siddhi Bhagat</h4>
-                                <span>Ex-colleague — Grab A Grub Services</span>
+                <div class="testimonial-slider anim-fade-up">
+                    <div class="slider-viewport">
+                        <div class="testimonials-track" id="testimonials-track">
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <blockquote class="testimonial-quote">
+                                    "I highly recommend Harshavardhan for his exceptional problem-solving skills and his
+                                    ability to work well as a team player. His expertise in JavaScript frameworks like
+                                    Express.js, Nest.js, and Angular.js, along with his proficiency in MySQL and MongoDB,
+                                    make him a valuable asset. Harshavardhan's dedication, hard work, and approachability
+                                    make him an outstanding professional who consistently delivers high-quality results."
+                                </blockquote>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">SB</div>
+                                    <div class="author-info">
+                                        <h4>Siddhi Bhagat</h4>
+                                        <span>Ex-colleague — Grab A Grub Services</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <blockquote class="testimonial-quote">
+                                    "His detailed analysis on features, problem solving nature and his knowledge over
+                                    technology makes him an ideal asset to a team. Harsh has been a devoted developer
+                                    with the spirit of creativity towards his work and moreover he is a team player. As
+                                    a Lead he strives to help &amp; mentor his team very well. Will definitely recommend
+                                    Harsh as a great team member to any organisation."
+                                </blockquote>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">SK</div>
+                                    <div class="author-info">
+                                        <h4>Shikha Kushwaha</h4>
+                                        <span>Ex-colleague — Mobeserv</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <blockquote class="testimonial-quote">
+                                    "Harsh is well versed in fields like Node.js, managing Cloud Infrastructures like
+                                    AWS and Google Cloud, Python, and MySQL. He possesses exceptional leadership
+                                    qualities — managing a team of developers and testers. Owing to his critical
+                                    thinking, calm composure, and good leadership qualities, he used to be the man
+                                    responsible for handling clients and his own team. Harsh will be an excellent asset
+                                    to any team."
+                                </blockquote>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">DJ</div>
+                                    <div class="author-info">
+                                        <h4>Dinesh Jain</h4>
+                                        <span>Ex-colleague — Mobeserv</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <blockquote class="testimonial-quote">
+                                    "Harshavardhan's deeper understanding of the technical nuances always helped us
+                                    during the rough time of our project. He has a deep knowledge of new IT technologies
+                                    and a ton of technological experience. As a senior member of the team, he is always
+                                    committed to impart knowledge to other members. Harshavardhan acknowledges the bigger
+                                    picture and client's value in every piece of work that he delivers."
+                                </blockquote>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">SK</div>
+                                    <div class="author-info">
+                                        <h4>Swapnaalii Anand Kamble</h4>
+                                        <span>Ex-colleague — Mobeserv</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <blockquote class="testimonial-quote">
-                            "His deep understanding of technical nuances and commitment to quality made our project a
-                            success. A valuable team player who consistently goes above and beyond."
-                        </blockquote>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">SK</div>
-                            <div class="author-info">
-                                <h4>Swapnali Kamble</h4>
-                                <span>Ex-colleague — Mobeserv</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <blockquote class="testimonial-quote">
-                            "Skilled in Node.js and MySQL with excellent problem-solving abilities. A reliable and
-                            hardworking professional who always delivers on time."
-                        </blockquote>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">SY</div>
-                            <div class="author-info">
-                                <h4>Sunaina Yadav</h4>
-                                <span>Colleague</span>
-                            </div>
-                        </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn slider-btn--prev" id="slider-prev" aria-label="Previous testimonial">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                        </button>
+                        <div class="slider-dots" id="slider-dots"></div>
+                        <button class="slider-btn slider-btn--next" id="slider-next" aria-label="Next testimonial">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polyline points="9 6 15 12 9 18" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
