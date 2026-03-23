@@ -390,9 +390,18 @@
 
     // Animation Loop
     const clock = new THREE.Clock();
+    let isVisible = true;
+
+    const observerOpts = { root: null, rootMargin: '0px', threshold: 0 };
+    const io = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    }, observerOpts);
+    io.observe(document.getElementById('hero'));
 
     function animate() {
       requestAnimationFrame(animate);
+      if (!isVisible) return; // Pause when off-screen
+
       const elapsedTime = clock.getElapsedTime();
 
       // Slow idle rotation
@@ -476,8 +485,15 @@
     geometryFn(group, material);
     scene.add(group);
 
+    let isVisible = true;
+    const io = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    });
+    io.observe(canvas);
+
     function animate() {
       requestAnimationFrame(animate);
+      if (!isVisible) return;
       group.rotation.x += 0.01;
       group.rotation.y += 0.015;
       renderer.render(scene, camera);
@@ -590,8 +606,15 @@
       }
     });
 
+    let isVisible = true;
+    const io = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    });
+    io.observe(document.getElementById('contact'));
+
     function animate() {
       requestAnimationFrame(animate);
+      if (!isVisible) return;
 
       camera.position.x += (mouseX - camera.position.x) * 0.02;
       camera.position.y += (mouseY - camera.position.y) * 0.02;
@@ -608,6 +631,7 @@
 
         if (positions[i3] > 500 || positions[i3] < -500) velocities[i].x *= -1;
         if (positions[i3 + 1] > 300 || positions[i3 + 1] < -300) velocities[i].y *= -1;
+        if (positions[i3 + 2] > 200 || positions[i3 + 2] < -200) velocities[i].z *= -1;
         if (positions[i3 + 2] > 200 || positions[i3 + 2] < -200) velocities[i].z *= -1;
 
         // Check connections
@@ -709,8 +733,15 @@
       }
     });
 
+    let isVisible = true;
+    const io = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    });
+    io.observe(document.getElementById('projects'));
+
     function animate() {
       requestAnimationFrame(animate);
+      if (!isVisible) return;
 
       camera.position.x += (mouseX - camera.position.x) * 0.05;
       camera.lookAt(scene.position);
@@ -777,10 +808,18 @@
       renderer.setSize(window.innerWidth, testRect.height);
     });
 
+    let isVisible = true;
+    const io = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    });
+    io.observe(document.getElementById('testimonials'));
+
     const clock = new THREE.Clock();
 
     function animate() {
       requestAnimationFrame(animate);
+      if (!isVisible) return;
+
       const time = clock.getElapsedTime() * 0.5;
 
       const positionAttribute = geometry.getAttribute('position');
