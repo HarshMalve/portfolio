@@ -1402,3 +1402,96 @@ button {
     transform: none;
   }
 }
+
+/* ============================================================
+   COOKIE CONSENT BANNER
+   ============================================================ */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  max-width: 380px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  font-family: inherit;
+  z-index: 9999;
+  
+  /* Animation states for sliding/fading */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.4s;
+}
+
+.cookie-banner.cookie-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cookie-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.cookie-content p {
+  margin: 0 0 20px 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cookie-btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cookie-primary {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  border: 1px solid var(--color-primary);
+}
+
+.cookie-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.cookie-ghost {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+.cookie-ghost:hover {
+  opacity: 1;
+  background-color: rgba(128, 128, 128, 0.08);
+}
+
+@media (max-width: 480px) {
+  .cookie-banner {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: calc(100% - 32px);
+  }
+}

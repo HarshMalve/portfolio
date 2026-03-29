@@ -860,4 +860,37 @@
     initTestimonials3D();
   }, 100);
 
+  // ─── Cookie Consent Banner ───
+  const cookieBanner = document.getElementById('cookie-consent-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+  const declineBtn = document.getElementById('decline-cookies');
+
+  if (cookieBanner) {
+    const consentPreference = localStorage.getItem('cookieConsent');
+  
+    if (!consentPreference) {
+      setTimeout(() => {
+        cookieBanner.classList.remove('cookie-hidden');
+      }, 1000);
+    } else {
+      cookieBanner.remove();
+    }
+  
+    const handleConsent = (preference) => {
+      localStorage.setItem('cookieConsent', preference);
+      cookieBanner.classList.add('cookie-hidden');
+      setTimeout(() => {
+        cookieBanner.remove();
+      }, 400);
+    };
+  
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => handleConsent('accepted'));
+    }
+  
+    if (declineBtn) {
+      declineBtn.addEventListener('click', () => handleConsent('declined'));
+    }
+  }
+
 })();
