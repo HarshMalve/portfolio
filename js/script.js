@@ -865,6 +865,20 @@
   const acceptBtn = document.getElementById('accept-cookies');
   const declineBtn = document.getElementById('decline-cookies');
 
+  function loadGoogleAnalytics() {
+    if (window.gtag) return; // Prevent multiple loads
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-X72ZFT0C0L';
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function() { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-X72ZFT0C0L');
+  }
+
   if (cookieBanner) {
     const consentPreference = localStorage.getItem('cookieConsent');
   
@@ -874,6 +888,9 @@
       }, 1000);
     } else {
       cookieBanner.remove();
+      if (consentPreference === 'accepted') {
+        loadGoogleAnalytics();
+      }
     }
   
     const handleConsent = (preference) => {
@@ -882,6 +899,10 @@
       setTimeout(() => {
         cookieBanner.remove();
       }, 400);
+
+      if (preference === 'accepted') {
+        loadGoogleAnalytics();
+      }
     };
   
     if (acceptBtn) {
